@@ -1,7 +1,15 @@
 import pandas as pd
 import os
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
 
 CURRENT_DIRECTORY = os.getcwd()
+pd.set_option('display.width', 300)
+np.set_printoptions(linewidth=300)
+pd.set_option('display.max_columns',10)
+
 
 # Files names:
 AI_PATENTS = pd.read_excel("Data/artificial_inteligence_patents_aplications.xlsx")
@@ -17,7 +25,7 @@ VISUAL_SYSTEMS_GT = pd.read_csv('Data/visual_systems.csv')
 VISION_MARKET_SIZE_WORLDWIDE = pd.read_excel('Data/vision_industry_market_size_worldwide.xlsx')
 AUTONOMOUS_DRIVING_PATENT_COMPANIES = pd.read_excel('Data/companies_with most_autonomus_drivin_patensts.xlsx')
 
-
+df = pd.read_excel('Data/data_combined.xlsx')
 
 """ Wyświetlanie jak wyglądają dane
 
@@ -31,7 +39,15 @@ print(FOUNDING_AI_STARTUPS_WORLD.head())
 print(AI_PATENTS.head())
 print(SENSORS_GT.head())
 print(VISUAL_SYSTEMS_GT.head())
-print(VISION_MARKET_SIZE_WORLDWIDE.head())
+VISION_MARKET_SIZE_WORLDWIDE.rename(columns={'value': 'value[bilions USD]'}, inplace=True)
+print(VISION_MARKET_SIZE_WORLDWIDE.head(len(VISION_MARKET_SIZE_WORLDWIDE['year'])))
 print(AUTONOMOUS_DRIVING_PATENT_COMPANIES.head())
 """
 
+
+
+
+print(df.head())
+print(df.corr())
+plt.scatter(df[['value_worldwide[bil.USD]']], df[['Vision_AI market4medicine[milions]']])
+plt.show()
