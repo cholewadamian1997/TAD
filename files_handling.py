@@ -3,7 +3,7 @@ import os
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-
+from scipy.stats import t
 
 CURRENT_DIRECTORY = os.getcwd()
 pd.set_option('display.width', 300)
@@ -37,17 +37,22 @@ print(VISION_MARKET_SIZE_IN_MEDICINE.head())
 print(FOUNDING_AI_STARTUPS_ISRAEL.head())
 print(FOUNDING_AI_STARTUPS_WORLD.head())
 print(AI_PATENTS.head())
-print(SENSORS_GT.head())
-print(VISUAL_SYSTEMS_GT.head())
+
 VISION_MARKET_SIZE_WORLDWIDE.rename(columns={'value': 'value[bilions USD]'}, inplace=True)
 print(VISION_MARKET_SIZE_WORLDWIDE.head(len(VISION_MARKET_SIZE_WORLDWIDE['year'])))
 print(AUTONOMOUS_DRIVING_PATENT_COMPANIES.head())
 """
 
-
-
-
-print(df.head())
+"""
 print(df.corr())
 plt.scatter(df[['value_worldwide[bil.USD]']], df[['Vision_AI market4medicine[milions]']])
 plt.show()
+
+print(df.head())"""
+
+SENSORS_GT.columns = ["amount"]
+SENSORS_GT["amount"] = str(SENSORS_GT["amount"])
+SENSORS = pd.DataFrame(np.nan, index=[2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2019], columns=[["amount"]])
+print(SENSORS.head())
+
+SENSORS_GT.to_excel("SensorsGT_ex.xlsx")
